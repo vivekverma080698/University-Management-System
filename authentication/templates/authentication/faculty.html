@@ -1,0 +1,76 @@
+{% extends 'authentication/base.html' %}
+{% block user_name %}
+    <a href="{% url 'authentication:faculty' %}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+           {{ EMPNAME }}
+    </a>
+{% endblock %}
+
+{% block login %}
+    <a href="{% url 'authentication:logout' %}">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+    </a>
+{% endblock %}
+
+{% block body %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }} of {{ Department }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:faculty" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2019-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                    {% if messageStatus %}
+                        {{ messageSee }}
+                    {% endif %}
+                    {% if messageforUserFlag %}
+                    {{ messageforUser }}
+                    {% endif %}
+                    {%  if messageSeeStatus == True %}
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>PaySlip ID</th>
+                                <th>Owner Name</th>
+                                <th>Grade</th>
+                                <th>Bonus</th>
+                                <th>Base Salary</th>
+                                <th>Total Salary</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                                  <th>Registrar</th>
+                                  <td>Staff</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for emp in emplist %}
+                                <td>{{ emp }}</td>
+                            {% endfor %}
+                            </tbody>
+                      </table>
+        {% endif %}
+
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}IIT Ropar{% endblock %}</title>
+    {% load staticfiles %}
+{#    <link rel="stylesheet" type="text/css" href="../../static/authentication/css/datepicker.css"/>#}
+{#    <script scr="../../static/authentication/js/bootstrap-datepicker.js"></script>#}
+{#    <link scr="../../static/authentication/less/datepicker.less"/>#}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'authentication:Index' %}">IIT Ropar Management System</a>
+        </div>
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    {% block user_name %}
+                    <a href="{% url 'authentication:Index' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                            Welcome
+                    </a>
+                    {% endblock %}
+                </li>
+                <li>
+                    {% block login %}
+                    <a href="{% url 'authentication:Index' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Login
+                    </a>
+                    {% endblock %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,330 @@
+{% extends 'authentication/base.html' %}
+{% block user_name %}
+    <a href="{% url 'authentication:employee' %}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+           {{ EMPNAME }}
+    </a>
+{% endblock %}
+
+{% block login %}
+    <a href="{% url 'authentication:logout' %}">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+    </a>
+{% endblock %}
+
+{% block body %}
+    {% if role == 'STAFF' or role == 'FACULTY' or role == 'CCFS' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+    {% elif role == 'DIRECTOR' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% elif role == 'REGISTRAR' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% elif role == 'ASSIST_REGISTRAR' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    {% elif role == 'HOD' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% elif role == 'DFA' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+    				<div class="row justify-content-between">
+                        <div class="col-md-1">
+                            <div class="row"><button type="button" onclick="showform('R')" class="btn btn-primary" >Show Leave Application</button></div><br>
+                        </div>
+                    </div>
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    {% elif role == 'ADFA' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                    <h3>{{ message }}</h3>
+                </div>
+            </div>
+        </div>
+
+    {% elif role == 'DEPSEC' %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                    <h2> {{ payslip }} {{ Allemp.first_name }}</h2>
+                    {% for emp in emplist %}
+                        <h2> {{ emp }} </h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info-form">
+                <div class="jumbotron">
+                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">
+                        {% csrf_token %}
+                        <label for="start">Select Month Year</label>
+                        <input type="month" name="start" in="0001-03" value="2018-05">
+                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>
+                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <script>
+            function showform(opt){
+            //alert(opt.value);
+            if(opt == "R"){
+                document.getElementById("runnerform").style.display = "";
+                document.getElementById("volunteerform").style.display = "none";
+                document.getElementById("deregisterform").style.display = "none";
+            }
+            else if (opt == "V"){
+                document.getElementById("runnerform").style.display = "none";
+                document.getElementById("volunteerform").style.display = "";
+                document.getElementById("deregisterform").style.display = "none";
+            }
+            else {
+                document.getElementById("runnerform").style.display = "none";
+                document.getElementById("volunteerform").style.display = "none";
+                document.getElementById("deregisterform").style.display = "";
+            }
+         }
+    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'authentication/base.html' %}
+
+{% block body %}
+<section id="cover">
+    <div id="cover-caption">
+        <div id="container" class="container">
+            <div class="row text-white">
+                <div class="col-sm-6 offset-sm-3 text-center">
+                    <h1 class="display-4">Login</h1>
+                    <div class="info-form">
+                        <form action="{% url 'authentication:Index' %}" class="form-inlin justify-content-center" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="sr-only">Email</label>
+                                <input type="email" class="form-control" placeholder="Email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Password</label>
+                                <input type="password" class="form-control" placeholder="Password" name="passwd" required>
+                            </div>
+                            <button type="submit" class="btn btn-success ">Login</button>
+                        </form>
+                    </div>
+                        {% if message_state %}
+                            <ul class="messages">
+                                   <h3> {{ message }} </h3>
+                            </ul>
+                        {% endif %}
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

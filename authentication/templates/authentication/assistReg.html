@@ -1,0 +1,110 @@
+{% extends 'authentication/base.html' %}
+{% block user_name %}
+    <a href="">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+           {{ EMPNAME }}
+    </a>
+{% endblock %}
+
+{% block login %}
+    <a href="{% url 'authentication:logout' %}">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+    </a>
+{% endblock %}
+
+{% block body %}
+        <div class="container">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>I am {{ role }}</h1>
+                    <h2>My name is {{ first_name }} {{last_name }}</h2>
+                    <h2>I have {{ leave_available }} leaves available.</h2>
+                </div>
+            </div>
+        </div>
+
+
+        {%  if ISACCOUNT == True %}
+            <div class="container">
+                <div class="jumbotron">
+                    <div class="container">
+                        <button class="btn btn-success" id="myBtn">Create Payslip</button>
+                    </div>
+                    <div class="container " id='paysliptable' style="display: none;">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>PaySlip ID</th>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Experience</th>
+                                <th>Base Salary</th>
+                                <th>Bonus</th>
+                                <th>Total Salary</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                                  <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for emp in emplist %}
+                                <form action="{% url 'authentication:assistreg' %}" class="form-inlin justify-content-center" method="post">
+                                  {% csrf_token %}
+                                    <tr>
+                                    {% for item in emp %}
+                                        <td>{{ item }}</td>
+                                    {% endfor %}
+                                    <td>
+                                        <button type="submit" name="button" value="reject{{ emp.0 }}" class="btn btn-danger ">Reject</button>
+                                        <button type="submit" name="button" value="approve{{ emp.0 }}" class="btn btn-success ">Approve</button>
+                                    </td>
+                                  </tr>
+                                </form>
+                            {% endfor %}
+                            </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Take Leave</h1>
+            </div>
+        </div>
+
+
+
+{#        <div class="container">#}
+{#            <div class="info-form">#}
+{#                <div class="jumbotron">#}
+{#                    <form action="{% url "authentication:employee" %}" class="form-inlin justify-content-center" method="post">#}
+{#                        {% csrf_token %}#}
+{#                        <label for="start">Select Month Year</label>#}
+{#                        <input type="month" name="start" in="0001-03" value="2018-05">#}
+{#                        <button type="submit" name="button" value="see" class="btn btn-success ">See Payslip</button>#}
+{#                        <button type="submit" name="button" value="generate" class="btn btn-success ">Generate Payslip</button>#}
+{#                    </form>#}
+{#                    {{ message }}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+
+    <script>
+        count=1;
+        document.getElementById("myBtn").addEventListener("click", function(){
+            if (count === 1){
+                document.getElementById("paysliptable").style.display = "";
+                count=2;
+          }
+          else if(count===2){
+              document.getElementById("paysliptable").style.display = "none";
+              count=1;
+          }
+        });
+    </script>
+
+{% endblock %}
